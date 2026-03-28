@@ -8,6 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>SpotiKnob</RootNamespace>
     <AssemblyName>SpotiKnob</AssemblyName>
+    <ApplicationIcon>icon\knob.ico</ApplicationIcon>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -107,6 +108,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="icon\knob.ico" />
     <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

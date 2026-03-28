@@ -119,6 +119,7 @@ namespace SpotiKnob
         private void ConfigureForm()
         {
             MinimumSize = Size;
+            Icon = GetApplicationIcon();
 
             AttachWindowDrag(this);
             AttachWindowDrag(mainCardPanel);
@@ -172,7 +173,7 @@ namespace SpotiKnob
             trayIcon = new NotifyIcon
             {
                 ContextMenuStrip = trayMenu,
-                Icon = SystemIcons.Application,
+                Icon = GetApplicationIcon(),
                 Text = "SpotiKnob",
                 Visible = true
             };
@@ -1026,6 +1027,23 @@ namespace SpotiKnob
                 settingsForm.Dispose();
                 settingsForm = null;
             }
+        }
+
+        private static Icon GetApplicationIcon()
+        {
+            try
+            {
+                Icon applicationIcon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+                if (applicationIcon != null)
+                {
+                    return applicationIcon;
+                }
+            }
+            catch
+            {
+            }
+
+            return SystemIcons.Application;
         }
 
         private void ShowModeOverlay()
