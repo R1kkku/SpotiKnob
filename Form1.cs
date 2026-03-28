@@ -257,8 +257,8 @@ namespace SpotiKnob
             int centeredTop = Top + Math.Max(0, (Height - settingsForm.Height) / 2);
             settingsForm.Location = new Point(centeredLeft, centeredTop);
             settingsForm.ApplyState(
-                Properties.Settings.Default.RunAsAdministrator,
-                Properties.Settings.Default.StartMinimized);
+                AppConfigStore.Current.RunAsAdministrator,
+                AppConfigStore.Current.StartMinimized);
             settingsForm.SetToggleBindingState(pendingBindingAction == HotkeyAction.ModeCycle);
             settingsForm.Show(this);
             settingsForm.BringToFront();
@@ -382,19 +382,19 @@ namespace SpotiKnob
 
         private void LoadSavedBindings()
         {
-            TryLoadBinding(HotkeyAction.Clockwise, Properties.Settings.Default.ClockwiseHotkey);
-            TryLoadBinding(HotkeyAction.CounterClockwise, Properties.Settings.Default.CounterClockwiseHotkey);
-            TryLoadBinding(HotkeyAction.Press, Properties.Settings.Default.PressHotkey);
-            TryLoadBinding(HotkeyAction.ModeCycle, Properties.Settings.Default.ModeCycleHotkey);
+            TryLoadBinding(HotkeyAction.Clockwise, AppConfigStore.Current.ClockwiseHotkey);
+            TryLoadBinding(HotkeyAction.CounterClockwise, AppConfigStore.Current.CounterClockwiseHotkey);
+            TryLoadBinding(HotkeyAction.Press, AppConfigStore.Current.PressHotkey);
+            TryLoadBinding(HotkeyAction.ModeCycle, AppConfigStore.Current.ModeCycleHotkey);
         }
 
         private void SaveBindings()
         {
-            Properties.Settings.Default.ClockwiseHotkey = SerializeBinding(HotkeyAction.Clockwise);
-            Properties.Settings.Default.CounterClockwiseHotkey = SerializeBinding(HotkeyAction.CounterClockwise);
-            Properties.Settings.Default.PressHotkey = SerializeBinding(HotkeyAction.Press);
-            Properties.Settings.Default.ModeCycleHotkey = SerializeBinding(HotkeyAction.ModeCycle);
-            Properties.Settings.Default.Save();
+            AppConfigStore.Current.ClockwiseHotkey = SerializeBinding(HotkeyAction.Clockwise);
+            AppConfigStore.Current.CounterClockwiseHotkey = SerializeBinding(HotkeyAction.CounterClockwise);
+            AppConfigStore.Current.PressHotkey = SerializeBinding(HotkeyAction.Press);
+            AppConfigStore.Current.ModeCycleHotkey = SerializeBinding(HotkeyAction.ModeCycle);
+            AppConfigStore.Save();
         }
 
         private void TryLoadBinding(HotkeyAction action, string rawValue)
@@ -446,9 +446,9 @@ namespace SpotiKnob
         {
             UpdateTrayStartupState();
 
-            minimizeOnStartup = Properties.Settings.Default.StartMinimized;
+            minimizeOnStartup = AppConfigStore.Current.StartMinimized;
 
-            if (Properties.Settings.Default.RunAsAdministrator && !IsRunningAsAdministrator())
+            if (AppConfigStore.Current.RunAsAdministrator && !IsRunningAsAdministrator())
             {
                 shouldAttemptSelfElevation = true;
             }
@@ -464,8 +464,8 @@ namespace SpotiKnob
                 return;
             }
 
-            Properties.Settings.Default.StartWithWindows = enabled;
-            Properties.Settings.Default.Save();
+            AppConfigStore.Current.StartWithWindows = enabled;
+            AppConfigStore.Save();
             UpdateTrayStartupState();
             SyncSettingsFormState();
         }
@@ -474,8 +474,8 @@ namespace SpotiKnob
         {
             if (enabled)
             {
-                Properties.Settings.Default.RunAsAdministrator = true;
-                Properties.Settings.Default.Save();
+                AppConfigStore.Current.RunAsAdministrator = true;
+                AppConfigStore.Save();
 
                 if (!IsRunningAsAdministrator())
                 {
@@ -484,8 +484,8 @@ namespace SpotiKnob
             }
             else
             {
-                Properties.Settings.Default.RunAsAdministrator = false;
-                Properties.Settings.Default.Save();
+                AppConfigStore.Current.RunAsAdministrator = false;
+                AppConfigStore.Save();
             }
 
             SyncSettingsFormState();
@@ -493,8 +493,8 @@ namespace SpotiKnob
 
         private void ApplyStartMinimizedSetting(bool enabled)
         {
-            Properties.Settings.Default.StartMinimized = enabled;
-            Properties.Settings.Default.Save();
+            AppConfigStore.Current.StartMinimized = enabled;
+            AppConfigStore.Save();
             SyncSettingsFormState();
         }
 
@@ -513,8 +513,8 @@ namespace SpotiKnob
 
             if (result != DialogResult.OK)
             {
-                Properties.Settings.Default.RunAsAdministrator = false;
-                Properties.Settings.Default.Save();
+                AppConfigStore.Current.RunAsAdministrator = false;
+                AppConfigStore.Save();
                 SyncSettingsFormState();
                 return;
             }
@@ -535,8 +535,8 @@ namespace SpotiKnob
             }
             catch
             {
-                Properties.Settings.Default.RunAsAdministrator = false;
-                Properties.Settings.Default.Save();
+                AppConfigStore.Current.RunAsAdministrator = false;
+                AppConfigStore.Save();
                 SyncSettingsFormState();
                 ShowTopMostMessageBox(
                     "Administrator restart was cancelled or failed.",
@@ -634,8 +634,8 @@ namespace SpotiKnob
             if (settingsForm != null && !settingsForm.IsDisposed)
             {
                 settingsForm.ApplyState(
-                    Properties.Settings.Default.RunAsAdministrator,
-                    Properties.Settings.Default.StartMinimized);
+                    AppConfigStore.Current.RunAsAdministrator,
+                    AppConfigStore.Current.StartMinimized);
             }
         }
 
