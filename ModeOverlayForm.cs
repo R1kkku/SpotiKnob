@@ -25,6 +25,7 @@ namespace SpotiKnob
         public void ShowMode(string title, string description, Color accentColor, string glyph)
         {
             titleLabel.Text = title;
+            descriptionLabel.Text = description ?? string.Empty;
             cardPanel.BorderColor = Color.FromArgb(72, accentColor);
 
             Rectangle workingArea = Screen.FromPoint(Cursor.Position).WorkingArea;
@@ -42,6 +43,11 @@ namespace SpotiKnob
 
             Opacity = 0d;
             animationTimer.Start();
+        }
+
+        public void ShowNotification(string title, string description, Color accentColor)
+        {
+            ShowMode(title, description, accentColor, string.Empty);
         }
 
         protected override bool ShowWithoutActivation

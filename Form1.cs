@@ -760,11 +760,7 @@ namespace SpotiKnob
             IntPtr spotifyWindow = FindSpotifyWindow();
             if (spotifyWindow == IntPtr.Zero)
             {
-                if (trayIcon != null)
-                {
-                    trayIcon.ShowBalloonTip(1500, "Spotify Not Found", "Open the Spotify desktop app to receive media commands.", ToolTipIcon.Info);
-                }
-
+                ShowAppNotification("Spotify Not Found", "Open the Spotify desktop app to receive media commands.", Color.FromArgb(180, 83, 9));
                 return;
             }
 
@@ -810,11 +806,7 @@ namespace SpotiKnob
                 spotifyVolume = GetSpotifyAudioVolume();
                 if (spotifyVolume == null)
                 {
-                    if (trayIcon != null)
-                    {
-                        trayIcon.ShowBalloonTip(1500, "Spotify Not Found", "Start audio playback in Spotify to adjust its app volume.", ToolTipIcon.Info);
-                    }
-
+                    ShowAppNotification("Spotify Not Found", "Start audio playback in Spotify to adjust its app volume.", Color.FromArgb(180, 83, 9));
                     return;
                 }
 
@@ -1049,6 +1041,16 @@ namespace SpotiKnob
                 presentation.ToastDescription,
                 presentation.AccentBackgroundColor,
                 presentation.Glyph);
+        }
+
+        private void ShowAppNotification(string title, string description, Color accentColor)
+        {
+            if (modeOverlay == null || modeOverlay.IsDisposed)
+            {
+                modeOverlay = new ModeOverlayForm();
+            }
+
+            modeOverlay.ShowNotification(title, description, accentColor);
         }
 
         private ModePresentation GetCurrentModePresentation()

@@ -8,6 +8,7 @@ namespace SpotiKnob
         private System.ComponentModel.IContainer components = null;
         private RoundedPanel cardPanel;
         private Label titleLabel;
+        private Label descriptionLabel;
         private Label brandLabel;
         private Timer animationTimer;
 
@@ -27,6 +28,7 @@ namespace SpotiKnob
             this.animationTimer = new System.Windows.Forms.Timer(this.components);
             this.cardPanel = new SpotiKnob.RoundedPanel();
             this.brandLabel = new System.Windows.Forms.Label();
+            this.descriptionLabel = new System.Windows.Forms.Label();
             this.titleLabel = new System.Windows.Forms.Label();
             this.cardPanel.SuspendLayout();
             this.SuspendLayout();
@@ -41,6 +43,7 @@ namespace SpotiKnob
             this.cardPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(147)))), ((int)(((byte)(197)))), ((int)(((byte)(253)))));
             this.cardPanel.BorderThickness = 1;
             this.cardPanel.Controls.Add(this.brandLabel);
+            this.cardPanel.Controls.Add(this.descriptionLabel);
             this.cardPanel.Controls.Add(this.titleLabel);
             this.cardPanel.CornerRadius = 20;
             this.cardPanel.GradientEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(15)))), ((int)(((byte)(23)))), ((int)(((byte)(42)))));
@@ -63,13 +66,24 @@ namespace SpotiKnob
             this.brandLabel.TabIndex = 1;
             this.brandLabel.Text = "Spotiknob";
             // 
+            // descriptionLabel
+            // 
+            this.descriptionLabel.Font = AppTheme.CreateUiFont(10F);
+            this.descriptionLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
+            this.descriptionLabel.Location = new System.Drawing.Point(26, 50);
+            this.descriptionLabel.Name = "descriptionLabel";
+            this.descriptionLabel.Size = new System.Drawing.Size(304, 34);
+            this.descriptionLabel.TabIndex = 2;
+            this.descriptionLabel.Text = "Spotify mode controls playback and track navigation.";
+            this.descriptionLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // titleLabel
             // 
-            this.titleLabel.Font = new System.Drawing.Font("Consolas", 18F);
+            this.titleLabel.Font = AppTheme.CreateMonoFont(18F);
             this.titleLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(253)))), ((int)(((byte)(255)))));
-            this.titleLabel.Location = new System.Drawing.Point(22, 21);
+            this.titleLabel.Location = new System.Drawing.Point(22, 16);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(312, 50);
+            this.titleLabel.Size = new System.Drawing.Size(312, 28);
             this.titleLabel.TabIndex = 0;
             this.titleLabel.Text = "Spotify Mode";
             this.titleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
