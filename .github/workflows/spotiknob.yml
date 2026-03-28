@@ -1,0 +1,72 @@
+name: Build SpotiKnob
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "v*"
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  PROJECT_PATH: SpotiKnob.csproj
+  SOLUTION_PATH: SpotiKnob.slnx
+  BUILD_CONFIGURATION: Release
+  BUILD_PLATFORM: AnyCPU
+  ARTIFACT_NAME: SpotiKnob-release
+  OUTPUT_DIR: bin\Release
+  PACKAGE_DIR: dist\SpotiKnob
+  ZIP_NAME: SpotiKnob-win.zip
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Restore
+        run: msbuild $env:PROJECT_PATH /t:Restore /p:Configuration=$env:BUILD_CONFIGURATION /p:Platform=$env:BUILD_PLATFORM
+        shell: powershell
+
+      - name: Build
+        run: msbuild $env:PROJECT_PATH /p:Configuration=$env:BUILD_CONFIGURATION /p:Platform=$env:BUILD_PLATFORM /m /verbosity:minimal
+        shell: powershell
+
+      - name: Prepare release package
+        run: |
+          New-Item -ItemType Directory -Force -Path $env:PACKAGE_DIR | Out-Null
+          Copy-Item "$env:OUTPUT_DIR\SpotiKnob.exe" "$env:PACKAGE_DIR\SpotiKnob.exe" -Force
+          Copy-Item "$env:OUTPUT_DIR\SpotiKnob.exe.config" "$env:PACKAGE_DIR\SpotiKnob.exe.config" -Force
+          Compress-Archive -Path "$env:PACKAGE_DIR\*" -DestinationPath "$env:ZIP_NAME" -Force
+        shell: powershell
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: |
+            ${{ env.PACKAGE_DIR }}
+            ${{ env.ZIP_NAME }}
+          if-no-files-found: error
+
+      - name: Create GitHub release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.ZIP_NAME }}
+          fail_on_unmatched_files: true
+          generate_release_notes: true
