@@ -2,7 +2,6 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -126,24 +125,7 @@ namespace SpotiKnob
 
         private static Bitmap LoadBitmap(string fileName)
         {
-            string[] candidatePaths =
-            {
-                Path.Combine(Application.StartupPath, "icon", fileName),
-                Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "icon", fileName)
-            };
-
-            foreach (string candidatePath in candidatePaths)
-            {
-                if (File.Exists(candidatePath))
-                {
-                    using (Image image = Image.FromFile(candidatePath))
-                    {
-                        return new Bitmap(image);
-                    }
-                }
-            }
-
-            return null;
+            return AssetStore.LoadBitmap("icon\\" + fileName);
         }
 
         private static GraphicsPath CreateRoundedPath(Rectangle bounds, int radius)

@@ -1,7 +1,7 @@
 using System;
 using System.Drawing;
 using System.Drawing.Text;
-using System.IO;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace SpotiKnob
@@ -11,6 +11,7 @@ namespace SpotiKnob
         private static readonly PrivateFontCollection FontCollection = new PrivateFontCollection();
         private static readonly object SyncRoot = new object();
         private static bool fontLoaded;
+        private static IntPtr fontBuffer = IntPtr.Zero;
 
         public static Color WindowBackground
         {
@@ -85,17 +86,18 @@ namespace SpotiKnob
 
                 string[] candidatePaths =
                 {
-                    Path.Combine(Application.StartupPath, "font", "JetBrainsMonoNerdFont-Light.ttf"),
-                    Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "font", "JetBrainsMonoNerdFont-Light.ttf"),
-                    Path.Combine(Application.StartupPath, "design", "font", "JetBrainsMonoNerdFontMono-LightItalic.ttf"),
-                    Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "design", "font", "JetBrainsMonoNerdFontMono-LightItalic.ttf")
+                    "font\\JetBrainsMonoNerdFont-Light.ttf",
+                    "design\\font\\JetBrainsMonoNerdFontMono-LightItalic.ttf"
                 };
 
                 foreach (string candidatePath in candidatePaths)
                 {
-                    if (File.Exists(candidatePath))
+                    byte[] fontBytes = AssetStore.GetBytes(candidatePath);
+                    if (fontBytes != null && fontBytes.Length > 0)
                     {
-                        FontCollection.AddFontFile(candidatePath);
+                        fontBuffer = Marshal.AllocCoTaskMem(fontBytes.Length);
+                        Marshal.Copy(fontBytes, 0, fontBuffer, fontBytes.Length);
+                        FontCollection.AddMemoryFont(fontBuffer, fontBytes.Length);
                         break;
                     }
                 }

@@ -1151,8 +1151,8 @@ namespace SpotiKnob
                 return;
             }
 
-            string audioPath = Path.Combine(Application.StartupPath, "audio", audioFileName);
-            if (!File.Exists(audioPath))
+            string audioPath = AssetStore.ExtractTempFile("audio\\" + audioFileName);
+            if (string.IsNullOrEmpty(audioPath) || !File.Exists(audioPath))
             {
                 return;
             }
