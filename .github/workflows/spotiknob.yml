@@ -22,7 +22,6 @@ env:
   ARTIFACT_NAME: SpotiKnob-release
   OUTPUT_DIR: bin\Release
   PACKAGE_DIR: dist\SpotiKnob
-  ZIP_NAME: SpotiKnob-win.zip
 
 jobs:
   build:
@@ -37,6 +36,17 @@ jobs:
 
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
+
+      - name: Set package name
+        run: |
+          $version = if ("${{ github.ref }}".StartsWith("refs/tags/")) {
+            "${{ github.ref_name }}"
+          } else {
+            "ci-${{ github.run_number }}"
+          }
+
+          "ZIP_NAME=SpotiKnob-$version-win.zip" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+        shell: powershell
 
       - name: Restore
         run: msbuild $env:PROJECT_PATH /t:Restore /p:Configuration=$env:BUILD_CONFIGURATION /p:Platform=$env:BUILD_PLATFORM
