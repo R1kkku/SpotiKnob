@@ -2,12 +2,6 @@
 
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-Support%20Development-ff5f5f?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/r1kku)
 
-Help me get a code signing certificate so SpotiKnob can:
-- Run without "Unknown Publisher" warnings
-- Improve trust with Windows and security systems
-- Allow the overlay to work more reliably across games without being flagged
-
-Your support directly improves the app 🙏
 
 # SpotiKnob
 
