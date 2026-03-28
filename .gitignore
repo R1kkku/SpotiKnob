@@ -1,0 +1,23 @@
+# Build output
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio / IDE
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Local .NET CLI state
+.dotnet/
+dotnet-home/
+
+# Logs and diagnostics
+*.log
+*.tmp
+*.cache
+
+# OS files
+Thumbs.db
+Desktop.ini

@@ -1,0 +1,44 @@
+<Page
+    x:Class="Untitled.Toast_Notification"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    Background="Transparent">
+
+    <Grid>
+
+        <!-- TOAST CARD -->
+        <Border
+            CornerRadius="20"
+            Padding="20"
+            Width="360"
+            Height="160"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Margin="20"
+            Background="#CC0F172A">
+
+            <Grid>
+
+                <!-- Main text -->
+                <TextBlock
+                    Text="Spotify Mode"
+                    FontSize="20"
+                    FontWeight="SemiBold"
+                    Foreground="White"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"/>
+
+                <!-- Bottom right label -->
+                <TextBlock
+                    Text="Spotiknob"
+                    FontSize="12"
+                    Foreground="#9CA3AF"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"/>
+
+            </Grid>
+        </Border>
+
+    </Grid>
+</Page>

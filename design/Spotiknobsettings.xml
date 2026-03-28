@@ -1,0 +1,55 @@
+<Page
+    x:Class="Untitled.Spotiknob_Config"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Padding="40">
+
+        <Border
+            CornerRadius="24"
+            Padding="24"
+            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+            Width="600">
+
+            <Grid ColumnSpacing="32">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- LEFT SETTINGS -->
+                <StackPanel Spacing="16">
+
+                    <ToggleSwitch Header="Run as Admin Always"/>
+                    <ToggleSwitch Header="Start Minimized"/>
+
+                    <Button Content="Change Toggle Key"
+                            HorizontalAlignment="Left"/>
+
+                </StackPanel>
+
+                <!-- RIGHT SIDE -->
+                <StackPanel Grid.Column="1" Spacing="16">
+
+                    <!-- Profile -->
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="R1kkku"
+                                   FontSize="18"
+                                   FontWeight="SemiBold"/>
+                        <TextBlock Text="Coderikku.cloud"
+                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                    </StackPanel>
+
+                    <!-- Actions -->
+                    <Button Content="Report Issue on GitHub"/>
+
+                    <Button Content="☕ Buy me a coffee"/>
+
+                </StackPanel>
+
+            </Grid>
+        </Border>
+    </Grid>
+</Page>
