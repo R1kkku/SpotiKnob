@@ -28,6 +28,7 @@ namespace SpotiKnob
             websiteIconButton.Click += delegate { OpenExternal("https://coderikku.cloud"); };
             websiteLabel.Click += delegate { OpenExternal("https://coderikku.cloud"); };
             coffeeButton.Click += delegate { OpenExternal("https://ko-fi.com/r1kku"); };
+            kofiLabel.Click += delegate { OpenExternal("https://ko-fi.com/r1kku"); };
             issueLinkLabel.LinkClicked += delegate { OpenExternal("https://github.com/R1kkku/SpotiKnob/issues"); };
 
             AttachWindowDrag(this);

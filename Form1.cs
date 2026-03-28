@@ -93,6 +93,12 @@ namespace SpotiKnob
 
         protected override void WndProc(ref Message m)
         {
+            if (m.Msg == SingleInstanceManager.ShowWindowMessage)
+            {
+                ShowFromTray();
+                return;
+            }
+
             if (m.Msg == WM_HOTKEY)
             {
                 HotkeyAction action;

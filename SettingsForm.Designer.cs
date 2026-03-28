@@ -17,6 +17,7 @@ namespace SpotiKnob
         private Label githubLabel;
         private Label websiteLabel;
         private ImageActionButton coffeeButton;
+        private Label kofiLabel;
         private LinkLabel issueLinkLabel;
         private WindowControlButton closeButton;
 
@@ -36,6 +37,7 @@ namespace SpotiKnob
             this.closeButton = new SpotiKnob.WindowControlButton();
             this.issueLinkLabel = new System.Windows.Forms.LinkLabel();
             this.coffeeButton = new SpotiKnob.ImageActionButton();
+            this.kofiLabel = new System.Windows.Forms.Label();
             this.websiteLabel = new System.Windows.Forms.Label();
             this.githubLabel = new System.Windows.Forms.Label();
             this.websiteIconButton = new SpotiKnob.ImageActionButton();
@@ -57,6 +59,7 @@ namespace SpotiKnob
             this.cardPanel.Controls.Add(this.closeButton);
             this.cardPanel.Controls.Add(this.issueLinkLabel);
             this.cardPanel.Controls.Add(this.coffeeButton);
+            this.cardPanel.Controls.Add(this.kofiLabel);
             this.cardPanel.Controls.Add(this.websiteLabel);
             this.cardPanel.Controls.Add(this.githubLabel);
             this.cardPanel.Controls.Add(this.websiteIconButton);
@@ -98,7 +101,7 @@ namespace SpotiKnob
             this.issueLinkLabel.LinkArea = new System.Windows.Forms.LinkArea(0, 22);
             this.issueLinkLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.issueLinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.issueLinkLabel.Location = new System.Drawing.Point(584, 242);
+            this.issueLinkLabel.Location = new System.Drawing.Point(584, 267);
             this.issueLinkLabel.Name = "issueLinkLabel";
             this.issueLinkLabel.Size = new System.Drawing.Size(188, 23);
             this.issueLinkLabel.TabIndex = 10;
@@ -112,11 +115,23 @@ namespace SpotiKnob
             this.coffeeButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.coffeeButton.DisplayImage = null;
             this.coffeeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.coffeeButton.Location = new System.Drawing.Point(450, 166);
+            this.coffeeButton.Location = new System.Drawing.Point(446, 166);
             this.coffeeButton.Name = "coffeeButton";
-            this.coffeeButton.Size = new System.Drawing.Size(176, 49);
+            this.coffeeButton.Size = new System.Drawing.Size(62, 44);
             this.coffeeButton.TabIndex = 9;
             this.coffeeButton.UseVisualStyleBackColor = true;
+            // 
+            // kofiLabel
+            // 
+            this.kofiLabel.AutoSize = true;
+            this.kofiLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.kofiLabel.Font = new System.Drawing.Font("Consolas", 14F);
+            this.kofiLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
+            this.kofiLabel.Location = new System.Drawing.Point(520, 178);
+            this.kofiLabel.Name = "kofiLabel";
+            this.kofiLabel.Size = new System.Drawing.Size(144, 19);
+            this.kofiLabel.TabIndex = 12;
+            this.kofiLabel.Text = "Ko-fi.com/r1kku";
             // 
             // websiteLabel
             // 
